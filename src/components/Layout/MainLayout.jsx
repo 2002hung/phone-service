@@ -1,10 +1,10 @@
 import styles from './styles.module.scss';
 
-const MainLayout = () => {
+const MainLayout = ({ chidren }) => {
     const { wrappLayout, container } = styles;
     return (
         <section className={wrappLayout}>
-            <div className={container}></div>
+            <div className={container}>{chidren}</div>
         </section>
     );
 };
