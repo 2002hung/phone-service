@@ -1,8 +1,7 @@
 import './styles.module.scss';
-import React from 'react';
 
 const Header = () => {
-    return <div>Header</div>;
+    return <div>header</div>;
 };
 
 export default Header;
