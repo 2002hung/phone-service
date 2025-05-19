@@ -1,1 +1,68 @@
+@import '@styles/variable.module.scss';
 
+.itemLink {
+    color: $primary-color;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 500;
+    margin: 0 20px;
+    line-height: 28px;
+    display: block;
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        display: none;
+        bottom: -6px;
+        height: 3px;
+        left: 0;
+        width: 100%;
+        background-color: $primary-color;
+    }
+
+    &:hover::after,
+    &.active::after {
+        display: block;
+        animation: active 0.3s ease-in-out;
+        transform-origin: right;
+    }
+}
+
+@keyframes active {
+    0% {
+        transform: scaleX(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+}
+
+.wrappHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    background-color: transparent;
+}
+
+.imgLogo {
+    width: 156px;
+    height: 56px;
+}
+
+.between {
+    display: flex;
+}
+
+.right {
+    font-size: 28px;
+    color: $primary-color;
+
+    .iconRight {
+        margin: 0 6px;
+        cursor: pointer;
+    }
+}
