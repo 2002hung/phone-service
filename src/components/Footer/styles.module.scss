@@ -1,0 +1,71 @@
+@import '@styles/variable.module.scss';
+
+.footer {
+    background-image: url(../../assets/images/footer.jpeg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .wrappFooter {
+        padding: 15px;
+        color: $white-color;
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0 35px;
+
+            .list {
+                padding: 15px;
+                width: 100%;
+
+                .itemLink {
+                    text-decoration: none;
+                    font-size: 15px;
+                    line-height: 36px;
+                    color: $white-color;
+                    font-weight: 500;
+
+                    &:hover {
+                        color: $primary-color;
+                        transition: all 0.3s ease;
+                    }
+                }
+            }
+
+            .title {
+                font-size: 19px;
+                font-weight: 600;
+                padding-bottom: 10px;
+
+                &:hover {
+                    color: $primary-color;
+                    transition: all 0.3s ease;
+                }
+            }
+        }
+
+        .bottom {
+            display: flex;
+            justify-content: space-around;
+            padding: 15px;
+            line-height: 36px;
+
+            .wrappIcon {
+                display: flex;
+                align-items: center;
+            }
+
+            .icon {
+                font-size: 20px;
+                margin: 0 16px;
+
+                &:hover {
+                    color: $primary-color;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                }
+            }
+        }
+    }
+}
