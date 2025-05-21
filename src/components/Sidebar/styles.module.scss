@@ -1,0 +1,56 @@
+@import '@styles/variable.module.scss';
+
+.boxSidebar {
+    .sidebarItem {
+        h4 {
+            text-transform: uppercase;
+            font-size: 14px;
+            color: $text-color;
+            margin-bottom: 20px;
+            border-bottom: 1px solid $border-color;
+            padding-bottom: 14px;
+            position: relative;
+            cursor: pointer;
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: 6px;
+                right: 6px;
+                width: 12px;
+                height: 2px;
+                background-color: $text-color;
+                transition: all 0.3s ease-out;
+            }
+        }
+
+        .closed::before {
+            content: '';
+            position: absolute;
+            top: 1px;
+            right: 11px;
+            width: 2px;
+            height: 12px;
+            background-color: $text-color;
+            transition: all 0.3s ease-out;
+        }
+
+        .content {
+            overflow: hidden;
+            max-height: 1000px;
+            opacity: 1;
+            margin-bottom: 62px;
+            transition: all 0.2s ease-out;
+        }
+
+        .closedContent {
+            max-height: 0;
+            margin-bottom: 0;
+            opacity: 0;
+        }
+    }
+
+    .closedItem {
+        margin-bottom: 15px;
+    }
+}

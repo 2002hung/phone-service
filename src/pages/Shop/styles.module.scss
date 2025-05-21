@@ -1,0 +1,20 @@
+.shop {
+    display: flex;
+    margin-bottom: 60px;
+
+    .left {
+        width: 25%;
+        padding: 15px;
+    }
+
+    .right {
+        width: 75%;
+        padding: 15px;
+
+        .boxProduct {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+    }
+}
