@@ -1,0 +1,40 @@
+@import '@styles/variable.module.scss';
+
+.cotainerFilter {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+
+    .boxLeft {
+        display: flex;
+        align-items: center;
+
+        .boxIcon {
+            display: flex;
+            align-items: center;
+
+            .icon {
+                padding: 8px;
+                cursor: pointer;
+                line-height: 1px;
+                color: $third-color;
+            }
+
+            .active {
+                color: $primary-color;
+            }
+        }
+    }
+
+    .boxRight {
+        display: flex;
+        align-items: center;
+
+        p {
+            margin-right: 10px;
+            color: $third-color;
+            font-size: 16px;
+            font-weight: 500;
+        }
+    }
+}

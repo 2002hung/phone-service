@@ -1,0 +1,29 @@
+.breadcrumb {
+    background-image: url(../../assets/images/Breadcrumb.jpeg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 78px 0;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+
+    div {
+        padding: 15px;
+    }
+
+    a {
+        display: flex;
+        justify-content: center;
+        color: #7e8688;
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 26px;
+    }
+
+    p {
+        font-size: 44px;
+        font-weight: 700;
+        color: #f56d0d;
+    }
+}

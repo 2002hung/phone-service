@@ -9,3 +9,13 @@
   --second-color: #{$second-color};
   --third-color: #{$third-color};
 }
+
+.iconBox{
+  width: 80px;
+  margin-bottom: 20px;
+}
+
+.imageBlog{
+  border-radius: 5px;
+  object-fit: cover;
+}

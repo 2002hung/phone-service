@@ -1,0 +1,32 @@
+@import '@styles/variable.module.scss';
+
+.inputBox {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+
+    input {
+        padding: 0 15px;
+        font-size: 14px;
+        height: 36px;
+        width: 100%;
+        color: $text-color;
+        line-height: 28px;
+        font-weight: 500;
+    }
+
+    .boxIcon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 42px;
+        height: 36px;
+        cursor: pointer;
+
+        .icon {
+            font-size: 22px;
+        }
+    }
+}

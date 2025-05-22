@@ -1,0 +1,76 @@
+@import '@styles/variable.module.scss';
+
+.containerProduct {
+    width: 33.33333333%;
+    border: 1px solid $border-color;
+    padding: 15px;
+    margin-top: -1px;
+
+    .imgProduct {
+        margin-bottom: 10px;
+        position: relative;
+        cursor: pointer;
+
+        img {
+            height: auto;
+            width: 100%;
+        }
+
+        span {
+            padding: 5px;
+            position: absolute;
+            top: 0;
+            right: 4px;
+            line-height: 0;
+            color: $second-color;
+            opacity: 0;
+            transform: scale(0.6);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 22px;
+        }
+
+        &:hover span {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .btn {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: 9;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        &:hover .btn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .title {
+        margin-bottom: 10px;
+
+        a {
+            color: $text-color;
+            font-size: 16px;
+            width: 100%;
+            display: block;
+
+            &:hover {
+                color: $primary-color;
+                transition: all 0.3s ease;
+            }
+        }
+    }
+
+    .price {
+        color: $second-color;
+        margin-bottom: 10px;
+        font-size: 16px;
+        display: block;
+    }
+}

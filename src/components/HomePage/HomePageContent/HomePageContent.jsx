@@ -1,135 +1,289 @@
+import { useState } from 'react'
+import Tab from '@mui/material/Tab';
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
-import React from 'react'
 import Button from '@components/Button/Button'
-import { keyframes } from '@mui/system'
-import Tooltip from '@mui/material/Tooltip'
-
-const pulse = keyframes`
-  0% {
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.2);
-  }
-  50% {
-    box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.3);
-  }
-  60% {
-    box-shadow: 0 0 0 21px rgba(255, 255, 255, 0.4);
-  }
-  100% {
-    box-shadow: 0 0 0 0 transparent;
-  }
-`
+import styles from './styles.module.scss' 
 
 function HomePageContent() {
+  const [value, setValue] = useState('1');
+  const {imageBlog} = styles
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        width: '100%',
-        height: '800px'
-      }}
-    >
-      <Box sx={{display: 'flex', bgcolor: 'white', height: '100%', width: '45%'}}>
-        <Box sx={{
-          m: '30% 3% 30% 29%',
-          alignContent: 'flex-start',
-          alignItems: 'flex-start',
-        }}>
-          <Box mb={'20px'}>
-            <Typography variant='h7' sx={{ fontSize: '44px' ,fontWeight: 'bold'}}>Your All-in-One Technology </Typography>
-            <Typography variant='h7' sx={{ fontSize: '44px' ,fontWeight: 'bold', color: '#f56d0d'}}>Phone Repair. </Typography>
-          </Box>
-          <Box mb={'20px'}>
-            <Typography component="p" sx={{
-              fontSize: '18px',
-              color: '#555555',
-              lineHeight: '28px'
-            }}>
-              Regardless of whether you need a device repair or a new phone case, you’ve come to the right place.
-              <br/>
-              <Typography sx={{fontSize: '18px', fontWeight: '700', color: '#A4004F'}} component='span'>X</Typography>
-              <Typography sx={{display: 'inline-block',fontSize: '18px', fontWeight: '700', color: '#222222'}}>Store.</Typography>
-            </Typography>
-          </Box>
-          <Box sx={{ display: 'flex', gap: 2, mb: 2}}>
-            <Button content='Book A Repair' type='dark' size='normal'/>
-            <Button content='Get An Estimate' type='primary' size='normal'/>
+    <Box p='80px 0'>
+      <Box sx={{ mx: '141px' , Width: '1230px',height: 'auto'}}>
+        <Box sx={{ width: '100%', height: 'auto'}}>
+          <Box sx={{m: '0 307px 35px', textAlign: 'center'}}>
+            <Typography sx={{
+              display: 'block',
+              fontSize: '16px',
+              fontWeight: '500',
+              color: 'var(--primary-color)',
+              textTransform: 'uppercase',
+              mb: '5px'
+            }} component='span'>We fixing all problem</Typography>
+            <Typography sx={{
+              fontSize: '44px',
+              fontWeight: '700',
+              lineHeight: '56px',
+              color: 'var(--text-color)',
+              mb: '25px'
+            }} component='h2'>What Powerful Services We Offer You.</Typography>
           </Box>
         </Box>
-      </Box>
-      <Box sx={{ height: '100%', width: '55%'}}>
-        <Box sx={{position: 'relative' }}>
-          <Box sx={{ height: '100%', width: '100%'}}>
-            <img style={{ 
-              'width': '100%',
-              'height': '100vh',
-              'object-fit': 'cover' }} src='https://xstore.b-cdn.net/elementor/demos/phone-service/wp-content/uploads/sites/79/2022/05/Image123.jpeg' alt='banner'
-              />
-          </Box>
-            <Tooltip
-              placement='right'
-              componentsProps={{
-                tooltip: {
-                  sx: {
-                  backgroundColor: 'transparent',
-                  boxShadow: 'none',
-                  padding: 0,
+        <Box sx={{ width: '100%', height: 'auto', typography: 'body1' }}>
+          <TabContext value={value}>
+            <Box sx={{ borderColor: 'divider'}}>
+              <TabList sx={{
+                display: 'flex',
+                justifyContent: 'space-around',
+                '& .MuiTabs-indicator': {
+                  display: 'none'
                 },
-              },
-              }}
-              title={
-              <Box sx={{width: '255px', height: '180px', bgcolor: '#fff', p: '20px 20px',borderRadius: '5px'}}>
-                <Box>
-                  <Typography sx={{color: '#000',fontSize: '17px', fontWeight: '500', textAlign: 'center', mb: '8px'}}>Add a battery replacement to your phone repair</Typography>
-                  <Box sx={{color: '#000', textAlign: 'center', fontSize: '44px', fontWeight: '600 '}}>
-                    <Typography sx={{color: '#F56D0D',fontSize: '14px', fontWeight: '400',textTransform: 'uppercase',textAlign: 'center', mb: '8px'}}>Staring at</Typography>
-                    $39.00
-                  </Box>
+                '& .MuiButtonBase-root': {
+                  color: 'var(--text-color)',
+                  flexGrow: 1,
+                  mb: '10px',
+                  '&.Mui-selected': {
+                    color: 'var(--white-color)',
+                    bgcolor: 'var(--primary-color)',
+                    p: '30px 40px'
+                  }
+                }
+              }} onChange={handleChange} aria-label="lab API tabs example">
+                <Tab label="Mobile Flash" value="1" />
+                <Tab label="Screen Repair" value="2" />
+                <Tab label="Software Installation" value="3" />
+                <Tab label="Country Lock" value="4" />
+                <Tab label="Data Recovery" value="5" />
+                <Tab label="Hardware Repair" value="6" />
+              </TabList>
+            </Box>
+            <TabPanel sx={{
+              display:  value === '1' ? 'flex' : 'none',
+              bgcolor: 'var(--white-color)',
+              boxShadow: '0px 15px 40px 0px rgba(0, 0, 0, 0.08)',
+              p: '15px',
+              borderRadius: '5px'
+            }} value="1">
+              <Box sx={{ p: '15px'}}>
+                <img className={imageBlog} src='https://xstore.8theme.com/elementor/demos/phone-service/wp-content/uploads/sites/79/elementor/thumbs/Image_blog_7-ppae00f34g03ejd133xx9kcpnvecu0rplv74vugn8w.jpeg' alt='Image_blog'></img>
+              </Box>
+              <Box sx={{
+                p: '15px',
+                display: 'flex',
+                alignItems: 'center',
+                alignContent: 'center',
+                flexWrap: 'wrap',
+              }}>
+                <Typography sx={{
+                  fontSize: '30px',
+                  fontWeight: '700',
+                  color: 'var(--text-color)',
+                  lineHeight: '40px',
+                  mb: '25px',
+                  flexBasis: '100%'
+                }}
+                variant='h2' component='div'>Mobile Flash with The Best Professional</Typography>
+                <Typography sx={{
+                  fontSize: '14px',
+                  fontWeight: '400',
+                  color: 'var(--third-color)',
+                  flexBasis: '100%',
+                  mb: '5px'
+                }} variant='h2'>START FROM</Typography>
+                <Typography sx={{
+                  color: 'var(--primary-color)',
+                  fontSize: '30px',
+                  fontWeight: '700'
+                }}>$16.00</Typography>
+                <Typography sx={{
+                  m: '20px 0 5px',
+                  fontSize: '18px',
+                  fontWeight: '300',
+                  lineHeight: '28px',
+                  color: 'var(--third-color)'
+                }}>
+                  Screen repair when an unknown printer took a galley of type and 
+                  scrambled computer of last expert engineering Technicians will come to your doorstep.
+                </Typography>
+                <Box mt='20px'>
+                  <Button content='Explore More' type='light' size='normal'/>
                 </Box>
               </Box>
-            }>
+            </TabPanel>
+            <TabPanel sx={{
+              display:  value === '2' ? 'flex' : 'none',
+              bgcolor: 'var(--white-color)',
+              boxShadow: '0px 15px 40px 0px rgba(0, 0, 0, 0.08)',
+              p: '15px',
+              borderRadius: '5px'
+              }} value="2"
+            >
+              <Box sx={{ p: '15px'}}>
+                <img className={imageBlog} src='https://xstore.8theme.com/elementor/demos/phone-service/wp-content/uploads/sites/79/elementor/thumbs/Image_blog_7-ppae00f34g03ejd133xx9kcpnvecu0rplv74vugn8w.jpeg' alt='Image_blog'></img>
+              </Box>
               <Box sx={{
-                position: 'absolute',
-                borderRadius: '50%',
-                border: '12px solid #F56D0D',
-                top: '44%',
-                left: '25%',
-                animation: `${pulse} 1.5s infinite`,
-                cursor: 'pointer'
-              }}></Box>
-            </Tooltip>
-            <Tooltip
-              placement='left'
-              componentsProps={{
-                tooltip: {
-                  sx: {
-                  backgroundColor: 'transparent',
-                  boxShadow: 'none',
-                  padding: 0,
-                },
-              },
-              }}
-              title={
-              <Box sx={{width: '255px', height: '180px', bgcolor: '#fff', p: '20px 20px',borderRadius: '5px'}}>
-                <Box>
-                  <Typography sx={{color: '#000',fontSize: '17px', fontWeight: '500', textAlign: 'center', mb: '8px'}}>Add a battery replacement to your phone repair</Typography>
-                  <Box sx={{color: '#000', textAlign: 'center', fontSize: '44px', fontWeight: '600 '}}>
-                    <Typography sx={{color: '#F56D0D',fontSize: '14px', fontWeight: '400',textTransform: 'uppercase',textAlign: 'center', mb: '8px'}}>Staring at</Typography>
-                    $29.00
-                  </Box>
+                p: '15px',
+                display: 'flex',
+                alignItems: 'center',
+                alignContent: 'center',
+                flexWrap: 'wrap',
+              }}>
+                <Typography sx={{
+                  fontSize: '30px',
+                  fontWeight: '700',
+                  color: 'var(--text-color)',
+                  lineHeight: '40px',
+                  mb: '25px',
+                  flexBasis: '100%'
+                }}
+                variant='h2' component='div'>Screen Repair of Mobile with The Best Professional</Typography>
+                <Typography sx={{
+                  fontSize: '14px',
+                  fontWeight: '400',
+                  color: 'var(--third-color)',
+                  flexBasis: '100%',
+                  mb: '5px'
+                }} variant='h2'>START FROM</Typography>
+                <Typography sx={{
+                  color: 'var(--primary-color)',
+                  fontSize: '30px',
+                  fontWeight: '700'
+                }}>$20.00</Typography>
+                <Typography sx={{
+                  m: '20px 0 5px',
+                  fontSize: '18px',
+                  fontWeight: '300',
+                  lineHeight: '28px',
+                  color: 'var(--third-color)'
+                }}>
+                  Screen repair when an unknown printer took a galley of type and 
+                  scrambled computer of last expert engineering Technicians will come to your doorstep.
+                </Typography>
+                <Box mt='20px'>
+                  <Button content='Explore More' type='light' size='normal'/>
                 </Box>
               </Box>
-            }>
+            </TabPanel>
+            <TabPanel sx={{
+              display:  value === '3' ? 'flex' : 'none',
+              bgcolor: 'var(--white-color)',
+              boxShadow: '0px 15px 40px 0px rgba(0, 0, 0, 0.08)',
+              p: '15px',
+              borderRadius: '5px'
+              }} value="3"
+            >
+              <Box sx={{ p: '15px'}}>
+                <img className={imageBlog} src='https://xstore.8theme.com/elementor/demos/phone-service/wp-content/uploads/sites/79/elementor/thumbs/Image_blog_7-ppae00f34g03ejd133xx9kcpnvecu0rplv74vugn8w.jpeg' alt='Image_blog'></img>
+              </Box>
               <Box sx={{
-                position: 'absolute',
-                borderRadius: '50%',
-                border: '12px solid #F56D0D',
-                top: '41%',
-                right: '25%',
-                animation: `${pulse} 1.5s infinite`,
-                cursor: 'pointer'
-              }}></Box>
-            </Tooltip>
+                p: '15px',
+                display: 'flex',
+                alignItems: 'center',
+                alignContent: 'center',
+                flexWrap: 'wrap',
+              }}>
+                <Typography sx={{
+                  fontSize: '30px',
+                  fontWeight: '700',
+                  color: 'var(--text-color)',
+                  lineHeight: '40px',
+                  mb: '25px',
+                  flexBasis: '100%'
+                }}
+                variant='h2' component='div'>Software Installation for Mobile with The Best Professional</Typography>
+                <Typography sx={{
+                  fontSize: '14px',
+                  fontWeight: '400',
+                  color: 'var(--third-color)',
+                  flexBasis: '100%',
+                  mb: '5px'
+                }} variant='h2'>START FROM</Typography>
+                <Typography sx={{
+                  color: 'var(--primary-color)',
+                  fontSize: '30px',
+                  fontWeight: '700'
+                }}>$22.00</Typography>
+                <Typography sx={{
+                  m: '20px 0 5px',
+                  fontSize: '18px',
+                  fontWeight: '300',
+                  lineHeight: '28px',
+                  color: 'var(--third-color)'
+                }}>
+                  Screen repair when an unknown printer took a galley of type and 
+                  scrambled computer of last expert engineering Technicians will come to your doorstep.
+                </Typography>
+                <Box mt='20px'>
+                  <Button content='Explore More' type='light' size='normal'/>
+                </Box>
+              </Box>
+            </TabPanel>
+            <TabPanel sx={{
+              display:  value === '4' ? 'flex' : 'none',
+              bgcolor: 'var(--white-color)',
+              boxShadow: '0px 15px 40px 0px rgba(0, 0, 0, 0.08)',
+              p: '15px',
+              borderRadius: '5px'
+              }} value="4"
+            >
+              <Box sx={{ p: '15px'}}>
+                <img className={imageBlog} src='https://xstore.8theme.com/elementor/demos/phone-service/wp-content/uploads/sites/79/elementor/thumbs/Image_blog_7-ppae00f34g03ejd133xx9kcpnvecu0rplv74vugn8w.jpeg' alt='Image_blog'></img>
+              </Box>
+              <Box sx={{
+                p: '15px',
+                display: 'flex',
+                alignItems: 'center',
+                alignContent: 'center',
+                flexWrap: 'wrap',
+              }}>
+                <Typography sx={{
+                  fontSize: '30px',
+                  fontWeight: '700',
+                  color: 'var(--text-color)',
+                  lineHeight: '40px',
+                  mb: '25px',
+                  flexBasis: '100%'
+                }}
+                variant='h2' component='div'>Country Lock</Typography>
+                <Typography sx={{
+                  fontSize: '14px',
+                  fontWeight: '400',
+                  color: 'var(--third-color)',
+                  flexBasis: '100%',
+                  mb: '5px'
+                }} variant='h2'>START FROM</Typography>
+                <Typography sx={{
+                  color: 'var(--primary-color)',
+                  fontSize: '30px',
+                  fontWeight: '700'
+                }}>$13.00</Typography>
+                <Typography sx={{
+                  m: '20px 0 5px',
+                  fontSize: '18px',
+                  fontWeight: '300',
+                  lineHeight: '28px',
+                  color: 'var(--third-color)'
+                }}>
+                  Screen repair when an unknown printer took a galley of type and 
+                  scrambled computer of last expert engineering Technicians will come to your doorstep.
+                </Typography>
+                <Box mt='20px'>
+                  <Button content='Explore More' type='light' size='normal'/>
+                </Box>
+              </Box>
+            </TabPanel>
+            <TabPanel value="5">Item Two</TabPanel>
+            <TabPanel value="6">Item Three</TabPanel>
+          </TabContext>
         </Box>
       </Box>
     </Box>

@@ -13,26 +13,13 @@
 
 .primaryBtn{
     background-color: #F56D0D;
+    border: 1px solid #F56D0D;
     color: #fff;
+    cursor: pointer;
 
     &:hover{
         background-color: #222222;
-        cursor: pointer;
-    }
-
-    a{
-        color: #ffffff;
-        text-decoration: none;
-    }
-}
-
-.secondaryBtn{
-    background-color: #222222;
-    color: #ffffff;
-
-    &:hover{
-        background-color: #F56D0D;
-        cursor: pointer;
+        border: 1px solid #222222;
     }
 
     a{
@@ -45,19 +32,11 @@
     background-color: #ffffff;
     border: 1px solid #F56D0D;
     color: #F56D0D;
+    cursor: pointer;
 
     &:hover{
         background-color: #F56D0D;
-        cursor: pointer;
-
-        a{
-            color: #ffffff; 
-        }
-    }
-
-    a{
-        color: #F56D0D;
-        text-decoration: none;
+        color: #ffffff; 
     }
 }
 
@@ -70,10 +49,6 @@
         background-color: #F56D0D;
         border: 1px solid #F56D0D;
         cursor: pointer;
-    }
-
-    a{
-        text-decoration: none;
     }
 }
 

@@ -1,13 +1,11 @@
 @use '@styles/variable.module.scss' as *;
 
 .itemLink {
-    color: $primary-color;
-    text-decoration: none;
+    color: $black-color;
     font-size: 17px;
     font-weight: 500;
     margin: 0 20px;
     line-height: 28px;
-    display: block;
     position: relative;
 
     &::after {
@@ -21,12 +19,23 @@
         background-color: $primary-color;
     }
 
+    &:hover,
+    &.homeMode,
+    &.active {
+        color: $primary-color;
+        transition: all 0.3s ease-in-out;
+    }
+
     &:hover::after,
     &.active::after {
         display: block;
         animation: active 0.3s ease-in-out;
         transform-origin: right;
     }
+}
+
+.homeMode {
+    color: $primary-color;
 }
 
 @keyframes active {
@@ -46,23 +55,23 @@
     align-items: center;
     padding: 8px 0;
     background-color: transparent;
-}
 
-.imgLogo {
-    width: 156px;
-    height: 56px;
-}
+    .imgLogo {
+        width: 156px;
+        height: 56px;
+    }
 
-.between {
-    display: flex;
-}
+    .between {
+        display: flex;
+    }
 
-.right {
-    font-size: 28px;
-    color: $primary-color;
+    .right {
+        font-size: 28px;
+        color: $primary-color;
 
-    .iconRight {
-        margin: 0 6px;
-        cursor: pointer;
+        .iconRight {
+            margin: 0 6px;
+            cursor: pointer;
+        }
     }
 }

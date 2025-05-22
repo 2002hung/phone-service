@@ -9,12 +9,11 @@ function Button({
     ...props
 
 }){
-    const {btn,primaryBtn,secondaryBtn,darkBtn,lightBtn,normalBtn,smallBtn} = styles;
+    const {btn,primaryBtn,darkBtn,lightBtn,normalBtn,smallBtn} = styles;
     return (
         <button
             className={classNames([btn],{
                 [primaryBtn]: type=="primary",
-                [secondaryBtn]: type=="secondary",
                 [darkBtn]: type=="dark",
                 [lightBtn]: type=="light",
             },{
