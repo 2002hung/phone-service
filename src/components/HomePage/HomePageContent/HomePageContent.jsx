@@ -1,12 +1,8 @@
 import { useState } from 'react'
-import Tab from '@mui/material/Tab';
-import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
-import TabPanel from '@mui/lab/TabPanel';
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Modal from '@mui/material/Modal'
-import Button from '@components/Button/Button'
+
 import styles from './styles.module.scss'
 import { IoCloseSharp } from "react-icons/io5";
 
