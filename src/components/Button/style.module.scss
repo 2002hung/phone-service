@@ -8,14 +8,13 @@
     font-weight: 500;
     text-decoration: none;
     transition: background-color 0.3s ease, color 0.3s ease;
-
+    cursor: pointer;
 }
 
 .primaryBtn{
     background-color: #F56D0D;
     border: 1px solid #F56D0D;
     color: #fff;
-    cursor: pointer;
 
     &:hover{
         background-color: #222222;
@@ -32,7 +31,6 @@
     background-color: #ffffff;
     border: 1px solid #F56D0D;
     color: #F56D0D;
-    cursor: pointer;
 
     &:hover{
         background-color: #F56D0D;
@@ -48,10 +46,23 @@
     &:hover{
         background-color: #F56D0D;
         border: 1px solid #F56D0D;
-        cursor: pointer;
+    }
+}
+
+.whiteBtn{
+    background-color: #ffffff;
+    color: #000000;
+
+    &:hover{
+        background-color: #000000;
+        color: #ffffff;
     }
 }
 
 .normalBtn{
     padding: 16px 42px;
+}
+
+.smallBtn{
+    padding: 14px 20px;
 }

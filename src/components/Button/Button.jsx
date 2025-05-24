@@ -9,13 +9,14 @@ function Button({
     ...props
 
 }){
-    const {btn,primaryBtn,darkBtn,lightBtn,normalBtn,smallBtn} = styles;
+    const {btn,primaryBtn,darkBtn,lightBtn,whiteBtn,normalBtn,smallBtn} = styles;
     return (
         <button
             className={classNames([btn],{
                 [primaryBtn]: type=="primary",
                 [darkBtn]: type=="dark",
                 [lightBtn]: type=="light",
+                [whiteBtn]: type=='white'
             },{
                 [normalBtn]: size=="normal",
                 [smallBtn]: size=="small"
