@@ -3,8 +3,10 @@ import styles from './styles.module.scss';
 import { FaRegHeart } from 'react-icons/fa';
 import { CiStar } from 'react-icons/ci';
 import { FaHeart } from 'react-icons/fa';
+import Button from '@components/Button/Button';
+import { MdOutlineRemoveRedEye } from 'react-icons/md';
 
-const ProductItem = () => {
+const ProductItem = ({ data }) => {
     const { containerProduct, imgProduct, title, btn, price } = styles;
 
     const [isHeart, setIsHeart] = useState(true);
@@ -12,10 +14,7 @@ const ProductItem = () => {
     return (
         <div className={containerProduct}>
             <div className={imgProduct}>
-                <img
-                    src='https://xstore.8theme.com/elementor/demos/phone-service/wp-content/uploads/sites/79/2022/05/13.1-min-600x600.jpg'
-                    alt=''
-                />
+                <img src={data.imagesURL[0]} alt='' />
                 <span onClick={() => setIsHeart((prev) => !prev)}>
                     {isHeart ? (
                         <FaRegHeart style={{ fontSize: '18px' }} />
@@ -25,11 +24,18 @@ const ProductItem = () => {
                         />
                     )}
                 </span>
-                <div className={btn}>button</div>
+                <div className={btn}>
+                    <Button
+                        content={'Quick shop'}
+                        type='dark'
+                        size={'full'}
+                        icon={<MdOutlineRemoveRedEye />}
+                    />
+                </div>
             </div>
             <div>
                 <h2 className={title}>
-                    <a href='#'>Remax RP-W230 Infinitical Wireless Chargers</a>
+                    <a href='#'>{data.name}</a>
                 </h2>
                 <div className='starProduct'>
                     <CiStar />
@@ -38,8 +44,10 @@ const ProductItem = () => {
                     <CiStar />
                     <CiStar />
                 </div>
-                <span className={price}>$42.50</span>
-                <div>button</div>
+                <span className={price}>${data.price}</span>
+                <div>
+                    <Button content={'Add to cart'} type='light' size='small' />
+                </div>
             </div>
         </div>
     );
