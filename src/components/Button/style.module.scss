@@ -1,6 +1,7 @@
-
-
-.btn{
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 17px 22px;
     border-radius: 100px 100px 100px 100px;
     border: none;
@@ -9,60 +10,78 @@
     text-decoration: none;
     transition: background-color 0.3s ease, color 0.3s ease;
     cursor: pointer;
+
+    .boxIcon {
+        margin-right: 8px;
+        display: flex;
+        align-items: center;
+    }
 }
 
-.primaryBtn{
-    background-color: #F56D0D;
-    border: 1px solid #F56D0D;
+.primaryBtn {
+    background-color: #f56d0d;
+    border: 1px solid #f56d0d;
     color: #fff;
 
-    &:hover{
+    &:hover {
         background-color: #222222;
         border: 1px solid #222222;
     }
 
-    a{
+    a {
         color: #ffffff;
         text-decoration: none;
     }
 }
 
-.lightBtn{
+.lightBtn {
     background-color: #ffffff;
-    border: 1px solid #F56D0D;
-    color: #F56D0D;
+    border: 1px solid #f56d0d;
+    color: #f56d0d;
 
-    &:hover{
-        background-color: #F56D0D;
-        color: #ffffff; 
+    &:hover {
+        background-color: #f56d0d;
+        color: #ffffff;
     }
 }
 
-.darkBtn{
+.darkBtn {
     background-color: #000000;
     border: 1px solid #000000;
     color: #ffffff;
 
-    &:hover{
-        background-color: #F56D0D;
-        border: 1px solid #F56D0D;
+    &:hover {
+        background-color: #f56d0d;
+        border: 1px solid #f56d0d;
     }
 }
 
-.whiteBtn{
+.whiteBtn {
     background-color: #ffffff;
     color: #000000;
 
-    &:hover{
+    &:hover {
         background-color: #000000;
         color: #ffffff;
     }
 }
 
-.normalBtn{
+.normalBtn {
     padding: 16px 42px;
 }
 
-.smallBtn{
+.smallBtn {
     padding: 14px 20px;
+}
+
+.fullBtn {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 0;
+
+    &:hover {
+        background-color: #000000;
+        border: 1px solid #000000;
+        color: #ffffff;
+    }
 }
