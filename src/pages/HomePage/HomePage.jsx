@@ -6,7 +6,9 @@ import Services from './HomePageContent/Services';
 import HomePageContent from './HomePageContent/HomePageContent';
 import RepairOffer from './HomePageContent/RepairOffer';
 import MediaHome from './HomePageContent/MediaHome';
+import SlideItem from '@components/SlideItem/SlideItem';
 import styles from './styles.module.scss'
+import ItemListHome from './HomePageContent/ItemListHome';
 
 const HomePage = () => {
     const {homePageContainer} = styles
@@ -19,6 +21,8 @@ const HomePage = () => {
             <MediaHome/>
             <RepairOffer/>
             <HomePageContent/>
+            <SlideItem/>
+            <ItemListHome/>
             <Footer />
         </div>
     );

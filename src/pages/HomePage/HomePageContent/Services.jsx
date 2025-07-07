@@ -9,7 +9,7 @@ import Button from '@components/Button/Button'
 import styles from './styles.module.scss'
 
 function Services() {
-const [value, setValue] = useState('1');
+  const [value, setValue] = useState('1');
   const {imageBlog} = styles
 
   const handleChange = (event, newValue) => {
@@ -74,7 +74,13 @@ const [value, setValue] = useState('1');
               borderRadius: '5px'
             }} value="1">
               <Box sx={{ p: '15px'}}>
-                <img className={imageBlog} src='https://xstore.8theme.com/elementor/demos/phone-service/wp-content/uploads/sites/79/elementor/thumbs/Image_blog_7-ppae00f34g03ejd133xx9kcpnvecu0rplv74vugn8w.jpeg' alt='Image_blog'></img>
+                <Box sx={{
+                  width: '100%',
+                  height: '100%',
+                  overflow: 'hidden'
+                }}>
+                  <img className={imageBlog} src='https://xstore.8theme.com/elementor/demos/phone-service/wp-content/uploads/sites/79/elementor/thumbs/Image_blog_7-ppae00f34g03ejd133xx9kcpnvecu0rplv74vugn8w.jpeg' alt='Image_blog'></img>
+                </Box>
               </Box>
               <Box sx={{
                 p: '15px',
@@ -128,7 +134,13 @@ const [value, setValue] = useState('1');
               }} value="2"
             >
               <Box sx={{ p: '15px'}}>
-                <img className={imageBlog} src='https://xstore.8theme.com/elementor/demos/phone-service/wp-content/uploads/sites/79/elementor/thumbs/Image_blog_7-ppae00f34g03ejd133xx9kcpnvecu0rplv74vugn8w.jpeg' alt='Image_blog'></img>
+                <Box sx={{
+                  width: '100%',
+                  height: '100%',
+                  overflow: 'hidden'
+                }}>
+                  <img className={imageBlog} src='https://xstore.8theme.com/elementor/demos/phone-service/wp-content/uploads/sites/79/elementor/thumbs/Image_blog_7-ppae00f34g03ejd133xx9kcpnvecu0rplv74vugn8w.jpeg' alt='Image_blog'></img>
+                </Box>
               </Box>
               <Box sx={{
                 p: '15px',
@@ -182,7 +194,13 @@ const [value, setValue] = useState('1');
               }} value="3"
             >
               <Box sx={{ p: '15px'}}>
-                <img className={imageBlog} src='https://xstore.8theme.com/elementor/demos/phone-service/wp-content/uploads/sites/79/elementor/thumbs/Image_blog_7-ppae00f34g03ejd133xx9kcpnvecu0rplv74vugn8w.jpeg' alt='Image_blog'></img>
+                <Box sx={{
+                  width: '100%',
+                  height: '100%',
+                  overflow: 'hidden'
+                }}>
+                  <img className={imageBlog} src='https://xstore.8theme.com/elementor/demos/phone-service/wp-content/uploads/sites/79/elementor/thumbs/Image_blog_7-ppae00f34g03ejd133xx9kcpnvecu0rplv74vugn8w.jpeg' alt='Image_blog'></img>
+                </Box>
               </Box>
               <Box sx={{
                 p: '15px',
@@ -236,7 +254,13 @@ const [value, setValue] = useState('1');
               }} value="4"
             >
               <Box sx={{ p: '15px'}}>
-                <img className={imageBlog} src='https://xstore.8theme.com/elementor/demos/phone-service/wp-content/uploads/sites/79/elementor/thumbs/Image_blog_7-ppae00f34g03ejd133xx9kcpnvecu0rplv74vugn8w.jpeg' alt='Image_blog'></img>
+                <Box sx={{
+                  width: '100%',
+                  height: '100%',
+                  overflow: 'hidden'
+                }}>
+                  <img className={imageBlog} src='https://xstore.8theme.com/elementor/demos/phone-service/wp-content/uploads/sites/79/elementor/thumbs/Image_blog_7-ppae00f34g03ejd133xx9kcpnvecu0rplv74vugn8w.jpeg' alt='Image_blog'></img>
+                </Box>
               </Box>
               <Box sx={{
                 p: '15px',
