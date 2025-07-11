@@ -13,6 +13,14 @@ const routers = [
         path: '/service',
         component: lazy(() => import('@pages/Service/Service')),
     },
-];
+    {
+        path: '/login',
+        component: lazy(() => import('@pages/Auth/LoginForm')),
+    },
+    {
+        path: '/register',
+        component: lazy(() => import('@pages/Auth/RegisterForm')),
+    }
+]
 
 export default routers;

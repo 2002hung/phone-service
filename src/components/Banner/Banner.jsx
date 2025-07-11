@@ -40,7 +40,7 @@ const Banner = () => {
             <Typography variant='h7' sx={{ fontSize: '44px' ,fontWeight: 'bold', color: 'var(--primary-color)'}}>Phone Repair. </Typography>
           </Box>
           <Box mb={'20px'}>
-            <Typography component="p" sx={{
+            <Typography sx={{
               fontSize: '18px',
               color: '#555555',
               lineHeight: '28px'
@@ -63,7 +63,7 @@ const Banner = () => {
             <img style={{ 
               'width': '100%',
               'height': '100vh',
-              'object-fit': 'cover' }} src='https://xstore.b-cdn.net/elementor/demos/phone-service/wp-content/uploads/sites/79/2022/05/Image123.jpeg' alt='banner'
+              'objectFit': 'cover' }} src='https://xstore.b-cdn.net/elementor/demos/phone-service/wp-content/uploads/sites/79/2022/05/Image123.jpeg' alt='banner'
               />
           </Box>
             <Tooltip
