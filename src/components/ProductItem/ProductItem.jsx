@@ -14,7 +14,7 @@ const ProductItem = ({ data }) => {
     return (
         <div className={containerProduct}>
             <div className={imgProduct}>
-                <img src={data.imagesURL[0]} alt='' />
+                <img src={data?.imagesURL[0]} alt='' />
                 <span onClick={() => setIsHeart((prev) => !prev)}>
                     {isHeart ? (
                         <FaRegHeart style={{ fontSize: '18px' }} />
@@ -35,7 +35,7 @@ const ProductItem = ({ data }) => {
             </div>
             <div>
                 <h2 className={title}>
-                    <a href='#'>{data.name}</a>
+                    <a href='#'>{data?.name}</a>
                 </h2>
                 <div className='starProduct'>
                     <CiStar />
@@ -44,7 +44,7 @@ const ProductItem = ({ data }) => {
                     <CiStar />
                     <CiStar />
                 </div>
-                <span className={price}>${data.price}</span>
+                <span className={price}>${data?.price}</span>
                 <div>
                     <Button content={'Add to cart'} type='light' size='small' />
                 </div>
