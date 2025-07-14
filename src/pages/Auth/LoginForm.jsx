@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
@@ -7,9 +7,34 @@ import Logo from '/src/assets/images/LogoXstore.png'
 import CardActions from '@mui/material/CardActions'
 import TextField from '@mui/material/TextField'
 import Zoom from '@mui/material/Zoom'
-import Alert from '@mui/material/Alert'
+import {
+  EMAIL_RULE,
+  EMAIL_RULE_MESSAGE,
+  FIELD_REQUIRED_MESSAGE,
+  PASSWORD_RULE,
+  PASSWORD_RULE_MESSAGE
+} from '../../utils/validators'
+import FieldErrorAlert from '@components/FieldErrorAlert/FieldErrorAlert'
+import { useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
+import { loginUserAPI } from '@/redux/user/userSlice'
 
 function LoginForm() {
+  const { register, handleSubmit, formState: { errors } } = useForm()
+
+  const dispatch = useDispatch()
+
+  const [searchParam] = useSearchParams()
+  const registerEmail = searchParam.get('registerEmail')
+
+  const submitLogIn = (data) => {
+    console.log(data)
+    dispatch(loginUserAPI(data))
+      .then(res => {
+        console.log(res)
+      })
+  }
+
   return (
     <Box sx={{
       display: 'flex',
@@ -22,7 +47,7 @@ function LoginForm() {
       backgroundPosition: 'center',
       boxShadow: 'inset 0 0 0 2000px rgba(0, 0, 0, 0.2)'
     }}>
-      <form>
+      <form onSubmit={handleSubmit(submitLogIn)} autoComplete="on">
         <Zoom in={true} style={{ transitionDelay: '200ms' }}>
           <MuiCard sx={{ minWidth: 380, maxWidth: 380 }}>
             <Box sx={{
@@ -41,7 +66,18 @@ function LoginForm() {
                   label="Enter Email..."
                   type="text"
                   variant="outlined"
+                  defaultValue={registerEmail || undefined}
+                  autoComplete="email"
+                  error={!!errors['email']}
+                  {...register('email', {
+                    required: FIELD_REQUIRED_MESSAGE,
+                    pattern: {
+                      value: EMAIL_RULE,
+                      message: EMAIL_RULE_MESSAGE
+                    }
+                  })}
                 />
+                <FieldErrorAlert errors={errors} fieldName={'email'}/>
               </Box>
               <Box sx={{ marginTop: '1em' }}>
                 <TextField
@@ -49,7 +85,16 @@ function LoginForm() {
                   label="Enter Password..."
                   type="password"
                   variant="outlined"
+                  error={!!errors['password']}
+                  {...register('password', {
+                    required: FIELD_REQUIRED_MESSAGE,
+                    pattern: {
+                      value: PASSWORD_RULE,
+                      message: PASSWORD_RULE_MESSAGE
+                    }
+                  })}
                 />
+                <FieldErrorAlert errors={errors} fieldName={'password'}/>
               </Box>
             </Box>
             <CardActions sx={{ padding: '0 1em 1em 1em' }}>
