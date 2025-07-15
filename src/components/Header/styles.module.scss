@@ -50,11 +50,14 @@
 }
 
 .wrappHeader {
+    width: 1250px;
     display: flex;
     justify-content: space-between;
+    margin: auto;
     align-items: center;
     padding: 8px 0;
     background-color: transparent;
+    z-index: 1;
 
     .imgLogo {
         width: 156px;
@@ -63,15 +66,57 @@
 
     .between {
         display: flex;
+        justify-content: space-between;
+        padding: 0 50px;
     }
 
     .right {
+        width: 270px;
         font-size: 28px;
         color: $primary-color;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
 
         .iconRight {
-            margin: 0 6px;
+            margin: 0 8px;
             cursor: pointer;
         }
     }
+}
+
+.imgLogo {
+    width: 156px;
+    height: 56px;
+}
+
+:global(.headroom-wrapper) {
+  height: 0 !important;
+}
+
+:global(.headroom) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background-color: transparent;
+    transition: transform 0.3s ease-in-out;
+}
+
+:global(.headroom--unfixed) {
+    background-color: transparent;
+}
+
+:global(.headroom--unpinned) {
+    transform: translateY(-100%);
+}
+
+:global(.headroom--pinned) {
+    transform: translateY(0%);
+}
+
+:global(.headroom--pinned.headroom--scrolled) {
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }

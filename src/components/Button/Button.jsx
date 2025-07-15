@@ -1,7 +1,8 @@
+import { Navigate } from 'react-router-dom';
 import styles from './style.module.scss';
 import classNames from 'classnames';
 
-function Button({ content, href, type, size, icon, ...props }) {
+function Button({ content, to, type, size, icon, ...props }) {
     const {
         btn,
         boxIcon,
@@ -33,7 +34,7 @@ function Button({ content, href, type, size, icon, ...props }) {
             {...props}
         >
             <div className={boxIcon}>{icon}</div>
-            {href ? <a href={href}>{content}</a> : content}
+            {to ? <Navigate to={to}>{content}</Navigate> : content}
         </button>
     );
 }
