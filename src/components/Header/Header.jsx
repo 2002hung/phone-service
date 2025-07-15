@@ -6,32 +6,154 @@ import { CiSearch } from 'react-icons/ci';
 import { CiHeart } from 'react-icons/ci';
 import { PiHandbagLight } from 'react-icons/pi';
 import Logo from '../../assets/images/LogoXstore.png';
+import { useSelector } from 'react-redux';
+import { selectCurrentUser } from '@/redux/user/userSlice';
+import { Link } from 'react-router-dom';
+import Button from '@components/Button/Button';
+import Avatar from '@mui/material/Avatar';
+import Tooltip from '@mui/material/Tooltip';
+import { useState, useEffect } from 'react';
+import MenuMui from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Headroom from 'react-headroom';
+import { Box, useMediaQuery } from '@mui/material';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import { MdMenu } from 'react-icons/md';
+import Typography from '@mui/material/Typography';
 
 const Header = () => {
     const { wrappHeader, left, imgLogo, between, right, iconRight } = styles;
+    const user = useSelector(selectCurrentUser);
 
+    const isTablet = useMediaQuery('(min-width:768px) and (max-width:1023px)');
+
+    const [anchorEl, setAnchorEl] = useState(null);
+    useEffect(() => {
+        const handleScroll = () => {
+            if (anchorEl) {
+            setAnchorEl(null);
+            }
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [anchorEl]);
+    
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget)
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    
     return (
-        <MainLayout>
-            <div className={wrappHeader}>
-                <div className={left}>
-                    <img className={imgLogo} src={Logo} alt='logo' />
+        <>
+            {!isTablet && <Headroom
+                disableInlineStyles // để dùng CSS riêng của bạn
+                style={{}}
+                downTolerance={10} // độ trễ khi scroll xuống
+                upTolerance={5} // độ trễ khi scroll lên
+                pinStart={1} // chỉ bắt đầu khi scroll qua 20px
+            >
+                <div className={wrappHeader}>
+                        <div className={left}>
+                            <img className={imgLogo} src={Logo} alt='logo' />
+                        </div>
+                        <div className={between}>
+                            {dataMenu.map((data, index) => (
+                                <Menu
+                                    key={index}
+                                    content={data.content}
+                                    href={data.href}
+                                />
+                            ))}
+                        </div>
+                        <div className={right}>
+                            <CiSearch className={iconRight} />
+                            {!user ? 
+                            <>
+                                <Button style={{ margin: 'auto'}} content='Log In' size='small'/>
+                                <Button style={{ margin: 'auto'}} content='Sign Up' size='small'/>
+                            </>                 
+                            : <>
+                                <CiHeart className={iconRight} />
+                                <PiHandbagLight className={iconRight} />
+                                <Tooltip title={user.displayName}>
+                                    <Avatar
+                                        sx={{ m: '10px', cursor: 'pointer'}}
+                                        src={user?.avatar}
+                                        alt={user?.userName}
+                                        onClick={handleClick}
+                                        aria-controls={open ? 'basic-menu' : undefined}
+                                        aria-haspopup="true"
+                                        aria-expanded={open ? 'true' : undefined}
+                                    />
+                                </Tooltip>
+                                <MenuMui
+                                    id="basic-menu"
+                                    disableScrollLock
+                                    anchorEl={anchorEl}
+                                    open={open}
+                                    onClose={handleClose}
+                                    slotProps={{
+                                        list: {
+                                            'aria-labelledby': 'basic-button',
+                                        },
+                                        paper: {
+                                            sx: {
+                                                mt: 1.5,
+                                            }
+                                        }
+                                    }}
+                                >
+                                    <MenuItem onClick={handleClose}>Profile</MenuItem>
+                                    <MenuItem onClick={handleClose}>My account</MenuItem>
+                                    <MenuItem onClick={handleClose}>Logout</MenuItem>
+                                </MenuMui>
+                            </>}
+                        </div>
                 </div>
-                <div className={between}>
-                    {dataMenu.map((data, index) => (
-                        <Menu
-                            key={index}
-                            content={data.content}
-                            href={data.href}
-                        />
-                    ))}
-                </div>
-                <div className={right}>
-                    <CiSearch className={iconRight} />
-                    <CiHeart className={iconRight} />
-                    <PiHandbagLight className={iconRight} />
-                </div>
-            </div>
-        </MainLayout>
+            </Headroom>}
+            {isTablet && 
+                <Headroom
+                    disableInlineStyles // để dùng CSS riêng của bạn
+                    style={{}}
+                    downTolerance={10} // độ trễ khi scroll xuống
+                    upTolerance={5} // độ trễ khi scroll lên
+                    pinStart={1} // chỉ bắt đầu khi scroll qua 20px
+                >
+                    <AppBar sx={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        bgcolor: 'white',
+                        boxShadow: 'none'
+                    }}
+                    position="static"
+                    >
+                        <Toolbar>
+                        <IconButton
+                            size="large"
+                            edge="start"
+                            color="inherit"
+                            aria-label="menu"
+                            sx={{ mr: 2, color: 'black' }}
+                        >
+                            <MdMenu />
+                        </IconButton>
+                        <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
+                            <img className={imgLogo} src={Logo} alt='logo' />
+                        </Box>
+                        <Typography sx={{ color: 'black'}}>Login</Typography>
+                        </Toolbar>
+                    </AppBar>
+                </Headroom>
+            }
+        </>
     );
 };
 
