@@ -38,11 +38,21 @@
     background-color: #ffffff;
     border: 1px solid #f56d0d;
     color: #f56d0d;
-
+    
+    a {
+        color: #000000;
+        text-decoration: none;
+    }
+    
     &:hover {
         background-color: #f56d0d;
         color: #ffffff;
+
+        a {
+            color: #ffffff;
+        }
     }
+
 }
 
 .darkBtn {
@@ -63,6 +73,11 @@
     &:hover {
         background-color: #000000;
         color: #ffffff;
+    }
+
+    a {
+        color: #000000;
+        text-decoration: none;
     }
 }
 

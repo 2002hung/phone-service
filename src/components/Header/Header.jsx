@@ -1,4 +1,4 @@
-import MainLayout from '@components/Layout/MainLayout';
+//import MainLayout from '@components/Layout/MainLayout';
 import styles from './styles.module.scss';
 import { dataMenu } from './constants';
 import Menu from './Menu/Menu';
@@ -6,8 +6,8 @@ import { CiSearch } from 'react-icons/ci';
 import { CiHeart } from 'react-icons/ci';
 import { PiHandbagLight } from 'react-icons/pi';
 import Logo from '../../assets/images/LogoXstore.png';
-import { useSelector } from 'react-redux';
-import { selectCurrentUser } from '@/redux/user/userSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectCurrentUser, logoutUserAPI } from '@/redux/user/userSlice';
 import { Link } from 'react-router-dom';
 import Button from '@components/Button/Button';
 import Avatar from '@mui/material/Avatar';
@@ -22,10 +22,36 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import { MdMenu } from 'react-icons/md';
 import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import CustomDrawer from '@/components/Drawer/CustomDrawer';
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid transparent',
+  borderRadius: '10px',
+  boxShadow: 24,
+  p: '20px',
+};
 
 const Header = () => {
     const { wrappHeader, left, imgLogo, between, right, iconRight } = styles;
+    const [openDrawer, setOpenDrawer] = useState(false);
+
+    //Modal confirm logout
+    const [openModalLogout, setOpenModalLogout] = useState(false);
+    const handleOpenModalLogout = () => setOpenModalLogout(true);
+    const handleCloseModalLogout = () => {
+        setOpenModalLogout(false);
+        setAnchorEl(null);
+    }
+    
     const user = useSelector(selectCurrentUser);
+    const dispatch = useDispatch()
 
     const isTablet = useMediaQuery('(min-width:768px) and (max-width:1023px)');
 
@@ -49,7 +75,16 @@ const Header = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    const handleLogout = () => {
+        dispatch(logoutUserAPI())
+        setOpenModalLogout(false);
+        setAnchorEl(null);
+    }
 
+    //Drawer
+    const toggleDrawer = (state) => () => {
+        setOpenDrawer(state);
+    };
     
     return (
         <>
@@ -77,8 +112,8 @@ const Header = () => {
                             <CiSearch className={iconRight} />
                             {!user ? 
                             <>
-                                <Button style={{ margin: 'auto'}} content='Log In' size='small'/>
-                                <Button style={{ margin: 'auto'}} content='Sign Up' size='small'/>
+                                <Button style={{ margin: 'auto'}} content='Log In' size='small' to='/login' type='primary'/>
+                                <Button style={{ margin: 'auto'}} content='Sign Up' size='small' to='/register' type='white'/>
                             </>                 
                             : <>
                                 <CiHeart className={iconRight} />
@@ -111,48 +146,96 @@ const Header = () => {
                                         }
                                     }}
                                 >
-                                    <MenuItem onClick={handleClose}>Profile</MenuItem>
                                     <MenuItem onClick={handleClose}>My account</MenuItem>
-                                    <MenuItem onClick={handleClose}>Logout</MenuItem>
+                                    <MenuItem onClick={handleOpenModalLogout}>Logout</MenuItem>
                                 </MenuMui>
                             </>}
                         </div>
                 </div>
             </Headroom>}
             {isTablet && 
-                <Headroom
-                    disableInlineStyles // để dùng CSS riêng của bạn
-                    style={{}}
-                    downTolerance={10} // độ trễ khi scroll xuống
-                    upTolerance={5} // độ trễ khi scroll lên
-                    pinStart={1} // chỉ bắt đầu khi scroll qua 20px
-                >
-                    <AppBar sx={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        bgcolor: 'white',
-                        boxShadow: 'none'
-                    }}
-                    position="static"
+                <>
+                    <Headroom
+                        disableInlineStyles // để dùng CSS riêng của bạn
+                        style={{}}
+                        downTolerance={10} // độ trễ khi scroll xuống
+                        upTolerance={5} // độ trễ khi scroll lên
+                        pinStart={1} // chỉ bắt đầu khi scroll qua 20px
                     >
-                        <Toolbar>
-                        <IconButton
-                            size="large"
-                            edge="start"
-                            color="inherit"
-                            aria-label="menu"
-                            sx={{ mr: 2, color: 'black' }}
+                        <AppBar sx={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            bgcolor: 'white',
+                            boxShadow: 'none'
+                        }}
+                        position="static"
                         >
-                            <MdMenu />
+                            <Toolbar>
+                            <IconButton
+                                size="large"
+                                edge="start"
+                                color="inherit"
+                                aria-label="menu"
+                                sx={{ mr: 2, color: 'black' }}
+                                onClick={toggleDrawer(true)}
+                            >
+                                <MdMenu />
+                            </IconButton>
+                            <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
+                                <img className={imgLogo} src={Logo} alt='logo' />
+                            </Box>
+                            <Typography sx={{ color: 'black'}}>Login</Typography>
+                            </Toolbar>
+                        </AppBar>
+                    </Headroom>
+                    <CustomDrawer toggleDrawer={toggleDrawer} openDrawer={openDrawer}/>
+                    {openDrawer && (
+                        <IconButton
+                            onClick={toggleDrawer(false)}
+                            sx={{
+                                position: 'fixed',
+                                top: 15,
+                                left: 315,
+                                zIndex: 1301,
+                                width: '35px',
+                                height: '35px',
+                                bgcolor: 'white',
+                                border: '1px solid transparent',
+                                boxShadow: 3,
+                                '&:hover':{
+                                    backgroundColor: 'rgb(225, 225, 225)'
+                                }
+                            }}
+                        >
+                            ✕
                         </IconButton>
-                        <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
-                            <img className={imgLogo} src={Logo} alt='logo' />
-                        </Box>
-                        <Typography sx={{ color: 'black'}}>Login</Typography>
-                        </Toolbar>
-                    </AppBar>
-                </Headroom>
+                    )}
+                </>
             }
+            <Modal
+                open={openModalLogout}
+                onClose={handleCloseModalLogout}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
+                    <Typography sx={{ fontWeight: '600' }} id="modal-modal-title" variant="h6" component="h2">
+                        Confirm Logout
+                    </Typography>
+                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                        Are you sure you want to Logout?
+                    </Typography>
+                    <Box sx={{
+                        display: 'flex',
+                        mt: '30px',
+                        justifyContent: 'flex-end',
+                        gap: '8px'
+                    }}>
+                        <Button content='Confirm' type='primary' onClick={handleLogout}/>
+                        <Button content='Cancel' onClick={handleCloseModalLogout}/>
+                    </Box>
+                </Box>
+            </Modal>
         </>
     );
 };

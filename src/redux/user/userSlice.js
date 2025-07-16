@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axiosClient from '../../apis/axiosClient'
+import { toast } from 'react-toastify'
 
 const initialState = {
   currentUser: null
@@ -12,7 +13,18 @@ export const loginUserAPI = createAsyncThunk(
 
     return response.data
   }
-) 
+)
+
+export const logoutUserAPI = createAsyncThunk(
+  'user/logoutUserAPI',
+  async (showSuccessMessage = true) => {
+    const response = await axiosClient.delete('users/logout')
+    if (showSuccessMessage) {
+      toast.success('Logout Successfully!')
+    }
+    return response.data
+  }
+)
 
 export const userSlice = createSlice({
   name: 'user',
@@ -21,6 +33,9 @@ export const userSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(loginUserAPI.fulfilled, (state, action) => {
       state.currentUser = action.payload
+    });
+    builder.addCase(logoutUserAPI.fulfilled, (state) => {
+      state.currentUser = null
     })
   }
 })
