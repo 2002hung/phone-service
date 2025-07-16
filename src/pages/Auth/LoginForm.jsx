@@ -18,21 +18,26 @@ import FieldErrorAlert from '@components/FieldErrorAlert/FieldErrorAlert'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { loginUserAPI } from '@/redux/user/userSlice'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 function LoginForm() {
   const { register, handleSubmit, formState: { errors } } = useForm()
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const [searchParam] = useSearchParams()
   const registerEmail = searchParam.get('registerEmail')
 
   const submitLogIn = (data) => {
     console.log(data)
-    dispatch(loginUserAPI(data))
-      .then(res => {
-        console.log(res)
-      })
+    toast.promise(
+      dispatch(loginUserAPI(data)),
+      { pending: 'Logging in....'}
+    ).then(res => {
+      if (!res.error) navigate('/')
+    })
   }
 
   return (
