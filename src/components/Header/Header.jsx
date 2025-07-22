@@ -8,7 +8,7 @@ import { PiHandbagLight } from 'react-icons/pi';
 import Logo from '../../assets/images/LogoXstore.png';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectCurrentUser, logoutUserAPI } from '@/redux/user/userSlice';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from '@components/Button/Button';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
@@ -24,6 +24,9 @@ import { MdMenu } from 'react-icons/md';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import CustomDrawer from '@/components/Drawer/CustomDrawer';
+import Search from '@components/Search/Search';
+import Cart from '@components/Cart/Cart';
+import Wishlist from '@components/Wishlist/Wishlist';
 
 const style = {
   position: 'absolute',
@@ -41,6 +44,10 @@ const style = {
 const Header = () => {
     const { wrappHeader, left, imgLogo, between, right, iconRight } = styles;
     const [openDrawer, setOpenDrawer] = useState(false);
+    const [openSearch, setOpenSearch] = useState(false)
+    const [openCart, setOpenCart] = useState(false)
+    const [openWishlist, setOpenWishlist] = useState(false)
+    const navigate = useNavigate()
 
     //Modal confirm logout
     const [openModalLogout, setOpenModalLogout] = useState(false);
@@ -79,13 +86,41 @@ const Header = () => {
         dispatch(logoutUserAPI())
         setOpenModalLogout(false);
         setAnchorEl(null);
+        navigate('/login')
     }
 
     //Drawer
-    const toggleDrawer = (state) => () => {
-        setOpenDrawer(state);
+    const handleOpenDrawer = () => {
+        setOpenDrawer(true);
+    };
+    const handleCloseDrawer = () => {
+        setOpenDrawer(false);
+    };
+
+    //Open Search
+    const handleOpenSearch = () => {
+        setOpenSearch(true);
+    };
+    const handleCloseSearch = () => {
+        setOpenSearch(false);
     };
     
+    //Open Cart 
+    const handleOpenCart = () => {
+        setOpenCart(true)
+    }
+    const handleCloseCart = () => {
+        setOpenCart(false)
+    }
+
+    //Open Wishlist 
+    const handleOpenWishlist = () => {
+        setOpenWishlist(true)
+    }
+    const handleCloseWishlist = () => {
+        setOpenWishlist(false)
+    }
+
     return (
         <>
             {!isTablet && <Headroom
@@ -109,15 +144,18 @@ const Header = () => {
                             ))}
                         </div>
                         <div className={right}>
-                            <CiSearch className={iconRight} />
+                            <CiSearch className={iconRight} onClick={handleOpenSearch} />
+                            <Search handleCloseSearch={handleCloseSearch} openSearch={openSearch}/>
                             {!user ? 
                             <>
                                 <Button style={{ margin: 'auto'}} content='Log In' size='small' to='/login' type='primary'/>
                                 <Button style={{ margin: 'auto'}} content='Sign Up' size='small' to='/register' type='white'/>
                             </>                 
                             : <>
-                                <CiHeart className={iconRight} />
-                                <PiHandbagLight className={iconRight} />
+                                <CiHeart className={iconRight} onClick={handleOpenWishlist}/>
+                                <Wishlist handleCloseWishlist={handleCloseWishlist} openWishlist={openWishlist}/>
+                                <PiHandbagLight className={iconRight} onClick={handleOpenCart}/>
+                                <Cart handleCloseCart={handleCloseCart} openCart={openCart}/>
                                 <Tooltip title={user.displayName}>
                                     <Avatar
                                         sx={{ m: '10px', cursor: 'pointer'}}
@@ -157,7 +195,6 @@ const Header = () => {
                 <>
                     <Headroom
                         disableInlineStyles // để dùng CSS riêng của bạn
-                        style={{}}
                         downTolerance={10} // độ trễ khi scroll xuống
                         upTolerance={5} // độ trễ khi scroll lên
                         pinStart={1} // chỉ bắt đầu khi scroll qua 20px
@@ -177,7 +214,7 @@ const Header = () => {
                                 color="inherit"
                                 aria-label="menu"
                                 sx={{ mr: 2, color: 'black' }}
-                                onClick={toggleDrawer(true)}
+                                onClick={handleOpenDrawer}
                             >
                                 <MdMenu />
                             </IconButton>
@@ -188,14 +225,14 @@ const Header = () => {
                             </Toolbar>
                         </AppBar>
                     </Headroom>
-                    <CustomDrawer toggleDrawer={toggleDrawer} openDrawer={openDrawer}/>
-                    {openDrawer && (
+                    <CustomDrawer handleCloseDrawer={handleCloseDrawer} openDrawer={openDrawer}/>
+                    {/* {openDrawer && (
                         <IconButton
-                            onClick={toggleDrawer(false)}
+                            onClick={handleCloseDrawer}
                             sx={{
                                 position: 'fixed',
                                 top: 15,
-                                left: 315,
+                                left: 380,
                                 zIndex: 1301,
                                 width: '35px',
                                 height: '35px',
@@ -209,7 +246,7 @@ const Header = () => {
                         >
                             ✕
                         </IconButton>
-                    )}
+                    )} */}
                 </>
             }
             <Modal
