@@ -1,0 +1,20 @@
+.sliderImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  will-change: transform;
+  display: block;
+}
+
+.sliderDotsCustom {
+  display: inline-flex !important;
+  justify-content: center;
+  gap: 10px;
+  bottom: -75px !important;
+
+  li {
+    height: auto !important;
+    width: auto !important;
+  }
+}

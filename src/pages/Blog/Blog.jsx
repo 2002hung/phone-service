@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
 import Header from '@components/Header/Header';
 import MainLayout from '@components/Layout/MainLayout';
@@ -5,6 +6,7 @@ import Breadcrumb from '@components/Breadcrumb/Breadcrumb';
 import Footer from '@components/Footer/Footer';
 import Box from '@mui/material/Box';
 import BlogItem from './BlogItem/BlogItem';
+import styles from './styles.module.scss'
 
 function Blog() {
   return (

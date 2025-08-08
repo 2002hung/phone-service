@@ -6,13 +6,13 @@ import { FaHeart } from 'react-icons/fa';
 import Button from '@components/Button/Button';
 import { MdOutlineRemoveRedEye } from 'react-icons/md';
 
-const ProductItem = ({ data }) => {
+const ProductItem = ({ data, className }) => {
     const { containerProduct, imgProduct, title, btn, price } = styles;
 
     const [isHeart, setIsHeart] = useState(true);
 
     return (
-        <div className={containerProduct}>
+        <div className={`${containerProduct} ${className || ''}`}>
             <div className={imgProduct}>
                 <img src={data?.imagesURL[0]} alt='' />
                 <span onClick={() => setIsHeart((prev) => !prev)}>
@@ -35,7 +35,7 @@ const ProductItem = ({ data }) => {
             </div>
             <div>
                 <h2 className={title}>
-                    <a href='#'>{data?.name}</a>
+                    <a href={`/${data?._id}`}>{data?.name}</a>
                 </h2>
                 <div className='starProduct'>
                     <CiStar />

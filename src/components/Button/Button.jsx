@@ -34,7 +34,7 @@ function Button({ content, to, type, size, icon, ...props }) {
                 )}
                 {...props}
             >
-                <div className={boxIcon}>{icon}</div>
+                {icon && <div className={boxIcon}>{icon}</div>}
                 {content}
             </button> :
             <Link className={classNames(
