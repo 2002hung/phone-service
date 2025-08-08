@@ -5,17 +5,10 @@ import InputBase  from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai'
 import { IoCloseSharp } from "react-icons/io5";
+import QuantityInput from '@components/QuantityInput/QuantityInput';
 
 function CartItem() {
   const [quantity, setQuantity] = useState(1)
-
-  const handleDecrease = () => {
-    setQuantity((prev) => (prev > 1 ? prev - 1 : 1))
-  }
-
-  const handleIncrease = () => {
-    setQuantity((prev) => prev + 1)
-  }
 
   return (
     <Box sx={{
@@ -64,79 +57,7 @@ function CartItem() {
           whiteSpace: 'nowrap'
         }}>Kingston IP660 Headphone White Optics Cable</Typography>
         <Box sx={{ display: 'flex', gap: '8px' }}>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              height: "28px",
-              width: "fit-content",
-              overflow: "hidden"
-            }}
-          >
-            <IconButton
-              onClick={handleDecrease}
-              size="small"
-              sx={{
-                p: '4px',
-                minWidth: '28px',
-                height: '28px',
-                border: "0.5px solid #ccc",
-                borderRadius: 0
-              }}
-            >
-              <AiOutlineMinus size={14} />
-            </IconButton>
-            <InputBase
-              value={quantity}
-              onChange={(e) => {
-                const val = Math.max(1, parseInt(e.target.value) || 1)
-                setQuantity(val)
-              }}
-              type="number"
-              inputProps={{
-                min: 1,
-              }}
-              sx={{
-                width: '28px',
-                height: '28px',
-                padding: 0,
-                minWidth: 0,
-                border: "0.5px solid #ccc",
-                '& input': {
-                  textAlign: 'center',
-                  padding: 0,
-                  fontSize: 14,
-                  height: '28px',
-                  width: '28px',
-                  appearance: 'textfield',
-                  MozAppearance: 'textfield',
-                  WebkitAppearance: 'none',
-                },
-                '& input::-webkit-outer-spin-button': {
-                  WebkitAppearance: 'none',
-                  margin: 0,
-                },
-                '& input::-webkit-inner-spin-button': {
-                  WebkitAppearance: 'none',
-                  margin: 0,
-                }
-              }}
-            />
-
-            <IconButton
-              onClick={handleIncrease}
-              size="small"
-              sx={{
-                p: '4px',
-                minWidth: '28px',
-                height: '28px',
-                borderRadius: 0,
-                border: "1px solid #ccc"
-              }}
-            >
-              <AiOutlinePlus size={14} />
-            </IconButton>
-          </Box>
+          <QuantityInput value={quantity} onChange={setQuantity} />
           <Box>
             <Typography> x 25.00$</Typography>
           </Box>

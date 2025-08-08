@@ -3,6 +3,9 @@ import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
 import '@styles/main.scss';
 
+import { theme } from './theme.js';
+import { ThemeProvider } from '@mui/material/styles';
+
 import { store } from './redux/store.js';
 import { Provider } from 'react-redux';
 
@@ -13,10 +16,12 @@ const persistor = persistStore(store)
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
-        <Provider store={store}>
-            <PersistGate persistor={persistor}>
-                <App />
-            </PersistGate>
-        </Provider>
+        <ThemeProvider theme={theme}>
+            <Provider store={store}>
+                <PersistGate persistor={persistor}>
+                    <App />
+                </PersistGate>
+            </Provider>
+        </ThemeProvider>
     </StrictMode>
 );

@@ -24,6 +24,18 @@ const routers = [
     {
         path: '/register',
         component: lazy(() => import('@pages/Auth/RegisterForm')),
+    },
+    {
+        path: '/about-us',
+        component: lazy(() => import('@pages/AboutUs/AboutUs')),
+    },
+    {
+        path: '/contact',
+        component: lazy(() => import('@pages/Contact/Contact')),
+    },
+    {
+        path: '/:id',
+        component: lazy(() => import('@pages/DetailProduct/DetailProduct')),
     }
 ]
 
