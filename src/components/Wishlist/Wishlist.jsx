@@ -65,7 +65,7 @@ function Wishlist({ openWishlist, handleCloseWishlist }) {
             </List>
           </Box>
           <Box sx={{ mt: '15px'}}>
-            <Button content='View Wishlist' type='dark' style={{ width: '100%'}}/>
+            <Button content='View Wishlist' type='dark' style={{ width: '100%'}} to='/wishlist'/>
             <Button content='Add all to cart' type='primary' style={{ width: '100%', marginTop: '10px' }}/>
           </Box>
         </Box>

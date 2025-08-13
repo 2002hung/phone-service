@@ -55,7 +55,7 @@ function RelatedProducts() {
   return (
     <Box sx={{
       minHeight: '500px',
-      my: '20px 30px'
+      m: '20px 0 30px'
     }}>
       <MainLayout>
         <Box sx={{
