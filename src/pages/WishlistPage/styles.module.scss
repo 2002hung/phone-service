@@ -1,0 +1,25 @@
+@use '@styles/variable.module.scss' as *;
+
+:root {
+  --primary-color: #{$primary-color};
+  --white-color: #{$white-color};
+  --black-color: #{$black-color};
+  --text-color: #{$text-color};
+  --border-color: #{$border-color};
+  --second-color: #{$second-color};
+  --third-color: #{$third-color};
+}
+
+.titleItem{
+  color: var(--text-color);
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.imgItem{
+  max-width: 100px;
+  max-height: 100px;
+}

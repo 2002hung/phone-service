@@ -8,7 +8,7 @@ import { PiHandbagLight } from 'react-icons/pi';
 import Logo from '../../assets/images/LogoXstore.png';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectCurrentUser, logoutUserAPI } from '@/redux/user/userSlice';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import Button from '@components/Button/Button';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
@@ -27,6 +27,7 @@ import CustomDrawer from '@/components/Drawer/CustomDrawer';
 import Search from '@components/Search/Search';
 import Cart from '@components/Cart/Cart';
 import Wishlist from '@components/Wishlist/Wishlist';
+import { useLocation } from "react-router-dom";
 
 const style = {
   position: 'absolute',
@@ -48,6 +49,7 @@ const Header = () => {
     const [openCart, setOpenCart] = useState(false)
     const [openWishlist, setOpenWishlist] = useState(false)
     const navigate = useNavigate()
+    const location = useLocation();
 
     //Modal confirm logout
     const [openModalLogout, setOpenModalLogout] = useState(false);
@@ -107,7 +109,11 @@ const Header = () => {
     
     //Open Cart 
     const handleOpenCart = () => {
-        setOpenCart(true)
+        if(location.pathname === '/cart-detail') {
+            return
+        } else {
+            setOpenCart(true)
+        }
     }
     const handleCloseCart = () => {
         setOpenCart(false)
@@ -115,7 +121,11 @@ const Header = () => {
 
     //Open Wishlist 
     const handleOpenWishlist = () => {
-        setOpenWishlist(true)
+        if(location.pathname === '/wishlist') {
+            return
+        } else {
+            setOpenWishlist(true)
+        }
     }
     const handleCloseWishlist = () => {
         setOpenWishlist(false)

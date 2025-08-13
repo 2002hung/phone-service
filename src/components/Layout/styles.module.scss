@@ -1,8 +1,19 @@
-.wrappLayout {
-    display: flex;
-    justify-content: center;
+.wrapLayout {
+    // display: flex;
+    // justify-content: center;
+    margin: 0 126px;
+
+    /* Tablet */
+    @media (min-width: 768px) and (max-width: 1024px) {
+        margin: 0 40px;
+    }
+
+    /* Mobile */
+    @media (max-width: 767px) {
+        margin: 0 20px;
+    }
 }
 
 .container {
-    width: 1250px;
+    width: 100%;
 }

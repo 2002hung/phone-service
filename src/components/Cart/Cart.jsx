@@ -76,7 +76,7 @@ function Cart({ openCart, handleCloseCart }) {
               <Typography variant='h6' sx={{ color: 'var(--third-color)', fontSize: '14px', fontWeight: '600'}}>Subtotal:</Typography>
               <Typography variant='h6' sx={{ color: 'var(--third-color)', fontSize: '14px', fontWeight: '300'}}>$310.00</Typography>
             </Box>
-            <Button content='View Cart' type='dark' style={{ width: '100%'}}/>
+            <Button content='View Cart' type='dark' style={{ width: '100%'}} to='/cart-detail'/>
             <Button content='Checkout' type='primary' style={{ width: '100%', marginTop: '10px' }}/>
           </Box>
         </Box>
